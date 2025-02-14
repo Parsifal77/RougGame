@@ -9,14 +9,7 @@ public class PG_Algorithm_Map : AbstractDDungeonGenerator
 {
 
     [SerializeField]
-    private int interation = 10;
-    [SerializeField]
-    public int walklenght = 10;
-    [SerializeField]
-    public bool satrtRandomInter = true;
-
-
-
+    private RandomWalkSO parametrs;
 
     protected override void RunProceduralGeneration()
     {
@@ -31,11 +24,11 @@ public class PG_Algorithm_Map : AbstractDDungeonGenerator
 
         HashSet<Vector2Int> floorPosition = new HashSet<Vector2Int>();
 
-        for (int i = 0;i < interation; i++)
+        for (int i = 0;i < parametrs.interations; i++)
         {
-            var path = PG_Algorith.RandomWalk(currentPosition, walklenght);
+            var path = PG_Algorith.RandomWalk(currentPosition, parametrs.walklength);
             floorPosition.UnionWith(path);
-            if(satrtRandomInter)
+            if(parametrs.StartRandomIteration)
             {
                 currentPosition = floorPosition.ElementAt(Random.Range(0, floorPosition.Count));
             }
