@@ -21,6 +21,21 @@ public static class PG_Algorith
         }
         return path;
     }
+
+    public static List<Vector2Int> RandomWalkCorridor(Vector2Int startposition, int corridorlength)
+    {
+        List<Vector2Int> corridor = new List<Vector2Int>();
+        var direction = Direction2D.RandomDirect();
+        var currentPosition = startposition;
+        corridor.Add(currentPosition);
+
+        for (int i = 0; i < corridorlength; i++)
+        {
+            currentPosition += direction;
+            corridor.Add(currentPosition);
+        }
+        return corridor;
+    }
 }
 
 public static class Direction2D

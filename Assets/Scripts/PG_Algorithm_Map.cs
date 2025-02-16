@@ -13,12 +13,13 @@ public class PG_Algorithm_Map : AbstractDDungeonGenerator
 
     protected override void RunProceduralGeneration()
     {
-        HashSet<Vector2Int> floorPosition = RunRandomWalk();
+        HashSet<Vector2Int> floorPosition = RunRandomWalk(parametrs);
         tileMapVisualizer.Clear();
         tileMapVisualizer.PaintFloorTile(floorPosition);
+        WallGenerator.CreateWalls(floorPosition, tileMapVisualizer);
     }
 
-    protected HashSet<Vector2Int> RunRandomWalk()
+    protected HashSet<Vector2Int> RunRandomWalk(RandomWalkSO parametrs)
     {
         var currentPosition = startPosition;
 
