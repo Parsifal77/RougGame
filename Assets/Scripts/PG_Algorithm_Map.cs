@@ -9,19 +9,19 @@ public class PG_Algorithm_Map : AbstractDDungeonGenerator
 {
 
     [SerializeField]
-    private RandomWalkSO parametrs;
+    protected RandomWalkSO parametrs;
 
     protected override void RunProceduralGeneration()
     {
-        HashSet<Vector2Int> floorPosition = RunRandomWalk(parametrs);
+        HashSet<Vector2Int> floorPosition = RunRandomWalk(parametrs, startPosition);
         tileMapVisualizer.Clear();
         tileMapVisualizer.PaintFloorTile(floorPosition);
         WallGenerator.CreateWalls(floorPosition, tileMapVisualizer);
     }
 
-    protected HashSet<Vector2Int> RunRandomWalk(RandomWalkSO parametrs)
+    protected HashSet<Vector2Int> RunRandomWalk(RandomWalkSO parametrs, Vector2Int position)
     {
-        var currentPosition = startPosition;
+        var currentPosition = position;
 
         HashSet<Vector2Int> floorPosition = new HashSet<Vector2Int>();
 
