@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class Health : MonoBehaviour
             OnDeathWithReference?.Invoke(sender);
             isDead = true;
             Destroy(gameObject);
+            if (sender.tag == "Enemy")
+            {
+                SceneManager.LoadScene("DeathScene");
+            }
         }
     }
 }
