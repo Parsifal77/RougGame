@@ -1,60 +1,40 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static Codice.Client.Common.Connection.AskCredentialsToUser;
 
-public class Agent : MonoBehaviour
+public abstract class Agent : MonoBehaviour
 {
-    private AgentAnimations agentAnimations;
-    private AgentMover agentMover;
+    protected AgentAnimations agentAnimations;
+    protected AgentMover agentMover;
+    protected Weapon weapon;
 
-    private WeaponParent weaponParent;
-
-    private Vector2 pointerInput, movementInput;
+    protected Vector2 pointerInput, movementInput;
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
 
-    private PlayerInput playerInput;
-
-    private void Update()
+    protected virtual void Awake()
     {
-        agentMover.MovementInput = MovementInput;
-        weaponParent.PointerPosition = pointerInput;
-        AnimateCharacter();
+        agentAnimations = GetComponentInChildren<AgentAnimations>();
+        weapon = GetComponentInChildren<Weapon>();
+        agentMover = GetComponent<AgentMover>();
     }
 
-    public void Dash()
+    protected virtual void Update()
     {
-        agentMover.Dash();
+        agentMover.MovementInput = MovementInput;
+        weapon.PointerPosition = PointerInput;
+        AnimateCharacter();
     }
 
     public void PerformAttack()
     {
-        weaponParent.Attack();
+        weapon.Attack();
     }
 
-    private void Awake()
+    protected void AnimateCharacter()
     {
-        agentAnimations = GetComponentInChildren<AgentAnimations>();
-        weaponParent = GetComponentInChildren<WeaponParent>();
-        agentMover = GetComponent<AgentMover>();
-
-        // only subscribe dash for the player
-        if (gameObject.CompareTag("Player"))
-        {
-            playerInput = FindObjectOfType<PlayerInput>();
-            if (playerInput != null)
-                playerInput.OnDash.AddListener(Dash);
-        }
-        
-    }
-
-    private void AnimateCharacter()
-    {
-        Vector2 lookDirection = pointerInput - (Vector2)transform.position;
+        Vector2 lookDirection = PointerInput - (Vector2)transform.position;
         agentAnimations.RotateToPointer(lookDirection);
         agentAnimations.PlayAnimation(MovementInput);
     }
-
 }

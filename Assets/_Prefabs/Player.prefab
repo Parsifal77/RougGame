@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2334184184601206651}
   - component: {fileID: 2334184184601206649}
   - component: {fileID: 2334184184601206650}
-  - component: {fileID: 2334184184601206652}
+  - component: {fileID: 3274239808946561132}
   - component: {fileID: 2334184184601206648}
   - component: {fileID: 2334184184601206535}
   - component: {fileID: 2334184184601206534}
@@ -124,7 +124,7 @@ MonoBehaviour:
   dashSpeed: 15
   dashDuration: 0.2
   dashParticle: {fileID: 0}
---- !u!114 &2334184184601206652
+--- !u!114 &3274239808946561132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2334184184601206654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9356072513729f94695480b9a7325b6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a24c3e1bbd8550498de580f177fa828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2334184184601206648
@@ -221,8 +221,8 @@ MonoBehaviour:
   OnMovementInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2334184184601206652}
-        m_TargetAssemblyTypeName: Agent, Assembly-CSharp
+      - m_Target: {fileID: 3274239808946561132}
+        m_TargetAssemblyTypeName: Agent, NewAssembly
         m_MethodName: set_MovementInput
         m_Mode: 0
         m_Arguments:
@@ -236,8 +236,8 @@ MonoBehaviour:
   OnPointerInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2334184184601206652}
-        m_TargetAssemblyTypeName: Agent, Assembly-CSharp
+      - m_Target: {fileID: 3274239808946561132}
+        m_TargetAssemblyTypeName: Agent, NewAssembly
         m_MethodName: set_PointerInput
         m_Mode: 0
         m_Arguments:
@@ -251,8 +251,8 @@ MonoBehaviour:
   OnAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2334184184601206652}
-        m_TargetAssemblyTypeName: Agent, Assembly-CSharp
+      - m_Target: {fileID: 3274239808946561132}
+        m_TargetAssemblyTypeName: Agent, NewAssembly
         m_MethodName: PerformAttack
         m_Mode: 1
         m_Arguments:
@@ -639,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2334184185514041662}
-  - component: {fileID: 2334184185514041661}
+  - component: {fileID: 8609901771576644485}
   m_Layer: 8
   m_Name: WeaponParent
   m_TagString: Untagged
@@ -663,7 +663,7 @@ Transform:
   - {fileID: 2334184184154702068}
   m_Father: {fileID: 2334184184601206653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2334184185514041661
+--- !u!114 &8609901771576644485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2334184185514041663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939d7293af487324093a7ba5443112f1, type: 3}
+  m_Script: {fileID: 11500000, guid: cbcdc6faf82c72f40b23bdb940fa946a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 2334184185191740858}
@@ -776,11 +776,19 @@ PrefabInstance:
     - target: {fileID: 5172762909572549320, guid: 4d663ec048aad474ab0dc98dc377de21, type: 3}
       propertyPath: OnAttackPeformed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2334184185514041661}
+      objectReference: {fileID: 8609901771576644485}
     - target: {fileID: 5172762909572549320, guid: 4d663ec048aad474ab0dc98dc377de21, type: 3}
       propertyPath: OnAnimationEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2334184185514041661}
+      objectReference: {fileID: 8609901771576644485}
+    - target: {fileID: 5172762909572549320, guid: 4d663ec048aad474ab0dc98dc377de21, type: 3}
+      propertyPath: OnAttackPeformed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Weapon, NewAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5172762909572549320, guid: 4d663ec048aad474ab0dc98dc377de21, type: 3}
+      propertyPath: OnAnimationEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Weapon, NewAssembly
+      objectReference: {fileID: 0}
     - target: {fileID: 5172762909572549324, guid: 4d663ec048aad474ab0dc98dc377de21, type: 3}
       propertyPath: m_Name
       value: Weapon
