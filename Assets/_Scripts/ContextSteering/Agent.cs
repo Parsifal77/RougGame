@@ -15,14 +15,18 @@ public class Agent : MonoBehaviour
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
 
+    private PlayerInput playerInput;
+
     private void Update()
     {
-        //pointerInput = GetPointerInput();
-        //movementInput = movement.action.ReadValue<Vector2>().normalized;
-
         agentMover.MovementInput = MovementInput;
         weaponParent.PointerPosition = pointerInput;
         AnimateCharacter();
+    }
+
+    public void Dash()
+    {
+        agentMover.Dash();
     }
 
     public void PerformAttack()
@@ -35,6 +39,15 @@ public class Agent : MonoBehaviour
         agentAnimations = GetComponentInChildren<AgentAnimations>();
         weaponParent = GetComponentInChildren<WeaponParent>();
         agentMover = GetComponent<AgentMover>();
+
+        // only subscribe dash for the player
+        if (gameObject.CompareTag("Player"))
+        {
+            playerInput = FindObjectOfType<PlayerInput>();
+            if (playerInput != null)
+                playerInput.OnDash.AddListener(Dash);
+        }
+        
     }
 
     private void AnimateCharacter()
@@ -43,7 +56,5 @@ public class Agent : MonoBehaviour
         agentAnimations.RotateToPointer(lookDirection);
         agentAnimations.PlayAnimation(MovementInput);
     }
-
-    
 
 }

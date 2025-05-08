@@ -117,10 +117,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603d5b8c42566cc478078dfbf732d89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
+  maxSpeed: 7
   acceleration: 10
   deacceleration: 20
   currentSpeed: 0
+  dashSpeed: 15
+  dashDuration: 0.2
+  dashParticle: {fileID: 0}
 --- !u!114 &2334184184601206652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3348746951f94ee498308faae9a7cb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 2
-  maxHealth: 2
+  currentHealth: 3
+  maxHealth: 3
   OnHitWithReference:
     m_PersistentCalls:
       m_Calls:
@@ -260,6 +263,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDash:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!210 &3623326460163637102
 SortingGroup:
   m_ObjectHideFlags: 0

@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
             OnDeathWithReference?.Invoke(sender);
             isDead = true;
             Destroy(gameObject);
-            if (sender.tag == "Enemy")
+            if (gameObject.tag == "Player")
             {
                 SceneManager.LoadScene("DeathScene");
             }
