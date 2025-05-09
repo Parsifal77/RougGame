@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,9 +9,9 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        OnMovementInput?.Invoke(new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical")));
+        OnMovementInput?.Invoke(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
         OnPointerInput?.Invoke(GetPointerInput());
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
             OnAttack?.Invoke();
 
         if (Input.GetKeyDown(KeyCode.Space))

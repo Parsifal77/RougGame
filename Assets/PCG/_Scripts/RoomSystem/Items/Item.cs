@@ -1,7 +1,4 @@
 using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,7 +39,7 @@ public class Item : MonoBehaviour
     {
         if (nonDestructible)
             return;
-        if(health>1)
+        if (health > 1)
             Instantiate(hitFeedback, spriteRenderer.transform.position, Quaternion.identity);
         else
             Instantiate(destoyFeedback, spriteRenderer.transform.position, Quaternion.identity);
@@ -57,7 +54,7 @@ public class Item : MonoBehaviour
             spriteRenderer.transform.DOComplete();
             Destroy(gameObject);
         }
-            
+
     }
 }
 

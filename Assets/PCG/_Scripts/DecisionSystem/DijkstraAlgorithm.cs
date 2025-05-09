@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ public class DijkstraAlgorithm
         while (unfinishedVertices.Count > 0)
         {
             Vector2Int vertex = unfinishedVertices.Dequeue();
-            int newDistance = distanceDictionary[parentDictionary[vertex]]+1;
+            int newDistance = distanceDictionary[parentDictionary[vertex]] + 1;
             if (distanceDictionary.ContainsKey(vertex) && distanceDictionary[vertex] <= newDistance)
                 continue;
             distanceDictionary[vertex] = newDistance;

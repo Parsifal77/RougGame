@@ -1,5 +1,4 @@
 using UnityEngine;
-using static Codice.Client.Common.Connection.AskCredentialsToUser;
 
 public abstract class Agent : MonoBehaviour
 {

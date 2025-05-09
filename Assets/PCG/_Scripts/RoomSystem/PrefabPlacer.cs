@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -44,9 +43,9 @@ public class PrefabPlacer : MonoBehaviour
             for (int i = 0; i < placementData.Quantity; i++)
             {
                 Vector2? possiblePlacementSpot = itemPlacementHelper.GetItemPlacementPosition(
-                    placementData.itemData.placementType, 
-                    100, 
-                    placementData.itemData.size, 
+                    placementData.itemData.placementType,
+                    100,
+                    placementData.itemData.size,
                     placementData.itemData.addOffset);
 
 
@@ -61,7 +60,7 @@ public class PrefabPlacer : MonoBehaviour
     }
     private GameObject PlaceItem(ItemData item, Vector2 placementPosition)
     {
-        GameObject newItem = CreateObject(itemPrefab,placementPosition);
+        GameObject newItem = CreateObject(itemPrefab, placementPosition);
         //GameObject newItem = Instantiate(itemPrefab, placementPosition, Quaternion.identity);
         newItem.GetComponent<Item>().Initialize(item);
         return newItem;

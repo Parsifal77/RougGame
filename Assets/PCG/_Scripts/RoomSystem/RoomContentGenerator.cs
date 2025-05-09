@@ -1,7 +1,6 @@
-using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -47,7 +46,7 @@ public class RoomContentGenerator : MonoBehaviour
 
         foreach (GameObject item in spawnedObjects)
         {
-            if(item != null)
+            if (item != null)
                 item.transform.SetParent(itemParent, false);
         }
     }
@@ -82,12 +81,12 @@ public class RoomContentGenerator : MonoBehaviour
 
     private void SelectEnemySpawnPoints(DungeonData dungeonData)
     {
-        foreach (KeyValuePair<Vector2Int,HashSet<Vector2Int>> roomData in dungeonData.roomsDictionary)
-        { 
+        foreach (KeyValuePair<Vector2Int, HashSet<Vector2Int>> roomData in dungeonData.roomsDictionary)
+        {
             spawnedObjects.AddRange(
                 defaultRoom.ProcessRoom(
                     roomData.Key,
-                    roomData.Value, 
+                    roomData.Value,
                     dungeonData.GetRoomFloorWithoutCorridors(roomData.Key)
                     )
             );
