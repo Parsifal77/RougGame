@@ -10,7 +10,7 @@ public class PlayerAgent : Agent
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private ParticleSystem dashParticle;
 
-    private float currentDashCooldown;
+    //private float currentDashCooldown;
     public bool isDashing;
     private float dashTimeLeft;
 

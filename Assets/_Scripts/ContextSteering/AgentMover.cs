@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AgentMover : MonoBehaviour
@@ -11,6 +12,8 @@ public class AgentMover : MonoBehaviour
 
     public bool IsDashing { get; set; }
     public Vector2 DashVelocity { get; set; }
+
+    public float MaxSpeed => maxSpeed;
 
     private void Awake()
     {
@@ -42,5 +45,19 @@ public class AgentMover : MonoBehaviour
     public void SetVelocityDirectly(Vector2 velocity)
     {
         rb2d.velocity = velocity;
+    }
+
+    public void SetSpeedMultiplier(float speedBoosterMultiplier, float speedBoosterDuration, float baseMaxSpeed)
+    {
+        this.maxSpeed = maxSpeed * speedBoosterMultiplier;
+        //Debug.Log($"Speed multiplier set to {this.maxSpeed} for {speedBoosterDuration} seconds.");
+        StartCoroutine(ResetSpeedMultiplierAfterDelay(speedBoosterDuration, baseMaxSpeed));
+    }
+
+    private IEnumerator ResetSpeedMultiplierAfterDelay(float speedBoosterDuration, float baseMaxSpeed)
+    {
+        yield return new WaitForSeconds(speedBoosterDuration);
+        maxSpeed = baseMaxSpeed;
+        //Debug.Log("Speed multiplier reset to base value.");
     }
 }

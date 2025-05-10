@@ -7,6 +7,10 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent OnAttack;
     public UnityEvent OnDash;
 
+    public UnityEvent OnSpeedBoosterConsumed;
+    public UnityEvent OnStrengthBoosterConsumed;
+    public UnityEvent OnHealthBoosterConsumed;
+
     private void Update()
     {
         OnMovementInput?.Invoke(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
@@ -16,6 +20,15 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             OnDash?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+            OnSpeedBoosterConsumed?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.C))
+            OnStrengthBoosterConsumed?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.E))
+            OnHealthBoosterConsumed?.Invoke();
     }
 
     private Vector2 GetPointerInput()

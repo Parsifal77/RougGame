@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +16,9 @@ public class DefaultEnemyAgent : Agent
 
     [SerializeField]
     private float aiUpdateDelay = 0.06f, attackDelay = 1f;
+
+    [SerializeField]
+    private float detectionDelay = 0.05f;
 
     [SerializeField]
     private float attackDistance = 0.5f;
@@ -55,6 +57,11 @@ public class DefaultEnemyAgent : Agent
         }
     }
 
+    private void Start()
+    {
+        InvokeRepeating("PerformDetection", 0, detectionDelay);
+    }
+
     protected override void Update()
     {
         if (IsStunned)
@@ -64,7 +71,7 @@ public class DefaultEnemyAgent : Agent
         }
 
         // Perform detection every frame
-        PerformDetection();
+        //PerformDetection();
 
         // Enemy AI movement based on target availability
         if (aiData.currentTarget != null && aiData.currentTarget.gameObject.CompareTag("Player"))

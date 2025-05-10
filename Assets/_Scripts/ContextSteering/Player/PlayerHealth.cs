@@ -1,6 +1,6 @@
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine;
 
 public class PlayerHealth : Health
 {
@@ -26,5 +26,16 @@ public class PlayerHealth : Health
         OnHealthChanged?.Invoke(0, maxHealth); // Notify UI about zero health
         Destroy(gameObject);
         SceneManager.LoadScene("DeathScene");
+    }
+
+    public void HealPlayer(int amount)
+    {
+        if (isDead) return;
+        currentHealth += amount;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 }

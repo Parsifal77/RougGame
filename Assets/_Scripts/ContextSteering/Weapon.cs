@@ -58,7 +58,7 @@ public abstract class Weapon : MonoBehaviour
         IsAttacking = false;
     }
 
-    public void DetectColliders()
+    public virtual void DetectColliders()
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {

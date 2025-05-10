@@ -27,7 +27,7 @@ public class TargetDetector : Detector
         if (playerCollider != null && playerCollider.gameObject.CompareTag("Player"))
         {
             colliders.Add(playerCollider.transform);
-            Debug.Log($"TargetDetector detected: {playerCollider.gameObject.name}");
+            //Debug.Log($"TargetDetector detected: {playerCollider.gameObject.name}");
         }
 
         aiData.targets = colliders;

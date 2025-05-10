@@ -47,7 +47,7 @@ MonoBehaviour:
   targetDetectionRange: 5
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   showGizmos: 0
 --- !u!1 &860678507066708221
 GameObject:
@@ -96,7 +96,7 @@ MonoBehaviour:
   detectionRadius: 2
   layerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 1
   showGizmos: 1
 --- !u!1 &1370966809829096737
 GameObject:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2
   agentColliderSize: 0.6
-  showGizmo: 0
+  showGizmo: 1
 --- !u!1 &3094051804538624555
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,8 +575,9 @@ MonoBehaviour:
   - {fileID: 6509386451905850178}
   - {fileID: 1331291844307097603}
   aiData: {fileID: 4322603732311757842}
-  aiUpdateDelay: 0.1
+  aiUpdateDelay: 0.05
   attackDelay: 1.5
+  detectionDelay: 0.05
   attackDistance: 0.8
   detectionRadius: 5
   movementDirectionSolver: {fileID: 8413207685032385467}
@@ -632,7 +633,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094051805721863274}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 074ad47ed8cd0f745be1f0c6dd455666, type: 3}
   m_Name: 
@@ -884,6 +885,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isDead: 0
+  healthBoosterDrop: {fileID: 798290318558456916, guid: e9054ae72e429644ea427288e3698ac9, type: 3}
+  speedBoosterDrop: {fileID: 4555313852354072748, guid: 18765d5bf82dea94ab9571f1ed85b2d8, type: 3}
+  strengthBoosterDrop: {fileID: 6585695128998478580, guid: 9ef571fda2bb144429f9261e206af4b4, type: 3}
 --- !u!114 &4424479776402164643
 MonoBehaviour:
   m_ObjectHideFlags: 0
