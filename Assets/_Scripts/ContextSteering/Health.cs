@@ -11,6 +11,9 @@ public abstract class Health : MonoBehaviour
     [SerializeField]
     protected bool isDead = false;
 
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
+
     public virtual void InitializeHealth(int healthValue)
     {
         currentHealth = healthValue;

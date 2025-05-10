@@ -22,6 +22,8 @@ public class RoomContentGenerator : MonoBehaviour
 
     public UnityEvent RegenerateDungeon;
 
+    public UnityEvent DungeonContentGenerated;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))
@@ -49,6 +51,8 @@ public class RoomContentGenerator : MonoBehaviour
             if (item != null)
                 item.transform.SetParent(itemParent, false);
         }
+
+        DungeonContentGenerated?.Invoke();
     }
 
     private void SelectPlayerSpawnPoint(DungeonData dungeonData)

@@ -21,7 +21,7 @@ public class ButtonAffectsBackground : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         if (backgroundAnimator != null)
         {
-            Debug.Log("Button hovered: affecting background.");
+            //Debug.Log("Button hovered: affecting background.");
             backgroundAnimator.SetBool("IsHover", true);
         }
     }
@@ -32,7 +32,7 @@ public class ButtonAffectsBackground : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         if (backgroundAnimator != null)
         {
-            Debug.Log("Button hover exited: affecting background.");
+            //Debug.Log("Button hover exited: affecting background.");
             backgroundAnimator.SetBool("IsHover", false);
         }
     }
@@ -43,7 +43,7 @@ public class ButtonAffectsBackground : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         if (backgroundAnimator != null)
         {
-            Debug.Log("Button clicked: triggering background press animation.");
+            //Debug.Log("Button clicked: triggering background press animation.");
             backgroundAnimator.SetTrigger("Pressed");
         }
     }
