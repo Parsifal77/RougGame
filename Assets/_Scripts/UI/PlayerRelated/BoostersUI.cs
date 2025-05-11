@@ -8,14 +8,18 @@ public class BoostersUI : MonoBehaviour
     private Image healthPotionUIImage;
     private Image speedPotionUIImage;
     private Image strengthPotionUIImage;
+    private Image CoinUIImage;
 
     private TextMeshProUGUI healthPotionText;
     private TextMeshProUGUI speedPotionText;
     private TextMeshProUGUI strengthPotionText;
+    private TextMeshProUGUI coinUIText;
 
     private int cachedHealthBoosterCount;
     private int cachedSpeedBoosterCount;
     private int cachedStrengthBoosterCount;
+    private int cachedCoinCount;
+    
 
 
     private BoostersHandler playerBoostersHandler;
@@ -30,10 +34,12 @@ public class BoostersUI : MonoBehaviour
         healthPotionUIImage = transform.Find("HealthBooster").GetComponent<Image>();
         speedPotionUIImage = transform.Find("SpeedBooster").GetComponent<Image>();
         strengthPotionUIImage = transform.Find("StrengthBooster").GetComponent<Image>();
+        CoinUIImage = transform.Find("CoinDropBooster").GetComponent<Image>();
 
         healthPotionText = transform.Find("HealthBooster").GetComponentInChildren<TextMeshProUGUI>(true);
         speedPotionText = transform.Find("SpeedBooster").GetComponentInChildren<TextMeshProUGUI>(true);
         strengthPotionText = transform.Find("StrengthBooster").GetComponentInChildren<TextMeshProUGUI>(true);
+        coinUIText = transform.Find("CoinDropBooster").GetComponentInChildren<TextMeshProUGUI>(true);
     }
 
     private void OnDungeonContentGenerated()
@@ -43,16 +49,19 @@ public class BoostersUI : MonoBehaviour
         playerBoostersHandler.OnSpeedBoosterCountChanged.AddListener(UpdateSpeedBoosterCount);
         playerBoostersHandler.OnStrengthBoosterCountChanged.AddListener(UpdateStrengthBoosterCount);
         playerBoostersHandler.OnHealthBoosterCountChanged.AddListener(UpdateHealthBoosterCount);
+        playerBoostersHandler.OnCoinCountChanged.AddListener(UpdateCoinCount);
 
 
         // Display booster counts for the first time
         healthPotionText.text = playerBoostersHandler.GetPlayerHealthBoosterCount.ToString();
         speedPotionText.text = playerBoostersHandler.GetPlayerSpeedBoosterCount.ToString();
         strengthPotionText.text = playerBoostersHandler.GetPlayerStrengthBoosterCount.ToString();
+        coinUIText.text = playerBoostersHandler.GetPlayerCoinCount.ToString();
 
         cachedHealthBoosterCount = playerBoostersHandler.GetPlayerHealthBoosterCount;
         cachedSpeedBoosterCount = playerBoostersHandler.GetPlayerSpeedBoosterCount;
         cachedStrengthBoosterCount = playerBoostersHandler.GetPlayerStrengthBoosterCount;
+        cachedCoinCount = playerBoostersHandler.GetPlayerCoinCount;
     }
 
     private void UpdateHealthBoosterCount(int updatedCount)
@@ -83,6 +92,16 @@ public class BoostersUI : MonoBehaviour
             speedPotionUIImage.fillAmount = 0;
 
         cachedSpeedBoosterCount = updatedCount;
+    }
+
+    private void UpdateCoinCount(int updatedCount)
+    {
+        coinUIText.text = updatedCount.ToString();
+
+        //if (updatedCount < cachedSpeedBoosterCount)
+        //    speedPotionUIImage.fillAmount = 0;
+
+        cachedCoinCount = updatedCount;
     }
 
 

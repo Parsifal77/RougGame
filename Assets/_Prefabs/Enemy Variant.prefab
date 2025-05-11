@@ -888,6 +888,8 @@ MonoBehaviour:
   healthBoosterDrop: {fileID: 798290318558456916, guid: e9054ae72e429644ea427288e3698ac9, type: 3}
   speedBoosterDrop: {fileID: 4555313852354072748, guid: 18765d5bf82dea94ab9571f1ed85b2d8, type: 3}
   strengthBoosterDrop: {fileID: 6585695128998478580, guid: 9ef571fda2bb144429f9261e206af4b4, type: 3}
+  coinDrop: {fileID: 1508295995826184583, guid: a07dd021c71325a48be8c2fc8249e1e8, type: 3}
+  dropSpawnChance: 0.5
 --- !u!114 &4424479776402164643
 MonoBehaviour:
   m_ObjectHideFlags: 0

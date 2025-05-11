@@ -1,5 +1,7 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent OnSpeedBoosterConsumed;
     public UnityEvent OnStrengthBoosterConsumed;
     public UnityEvent OnHealthBoosterConsumed;
+
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {
@@ -29,6 +36,12 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
             OnHealthBoosterConsumed?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("RoomContent");
+        }
+            
     }
 
     private Vector2 GetPointerInput()

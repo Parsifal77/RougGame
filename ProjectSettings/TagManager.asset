@@ -9,6 +9,7 @@ TagManager:
   - StrengthBooster
   - SpeedBooster
   - HealthBooster
+  - Coin
   layers:
   - Default
   - TransparentFX

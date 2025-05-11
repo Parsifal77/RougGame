@@ -23,9 +23,12 @@ public class BoostersHandler : MonoBehaviour
     //[SerializeField] private float healthBoosterDuration = 5f;
     [SerializeField] private int healthBoosterHealAmount = 2;
 
+    [SerializeField] private int CoinCount = 0;
+
     public int GetPlayerSpeedBoosterCount => speedBoosterCount;
     public int GetPlayerStrengthBoosterCount => strengthBoosterCount;
     public int GetPlayerHealthBoosterCount => healthBoosterCount;
+    public int GetPlayerCoinCount => CoinCount;
 
     public float GetPlayerSpeedBoosterDuration => speedBoosterDuration;
     public float GetPlayerStrengthBoosterDuration => strengthBoosterDuration;
@@ -34,6 +37,7 @@ public class BoostersHandler : MonoBehaviour
     public UnityEvent<int> OnSpeedBoosterCountChanged;
     public UnityEvent<int> OnStrengthBoosterCountChanged;
     public UnityEvent<int> OnHealthBoosterCountChanged;
+    public UnityEvent<int> OnCoinCountChanged;
 
     private int cachedPlayerAttackDamage;
     private float cachedPlayerMoveSpeed;
@@ -114,6 +118,12 @@ public class BoostersHandler : MonoBehaviour
         {
             healthBoosterCount++;
             OnHealthBoosterCountChanged?.Invoke(healthBoosterCount);
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("Coin"))
+        {
+            CoinCount++;
+            OnCoinCountChanged?.Invoke(CoinCount);
             Destroy(other.gameObject);
         }
     }
