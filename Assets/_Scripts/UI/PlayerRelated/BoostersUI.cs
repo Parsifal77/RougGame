@@ -13,7 +13,9 @@ public class BoostersUI : MonoBehaviour
     private TextMeshProUGUI speedPotionText;
     private TextMeshProUGUI strengthPotionText;
 
-
+    private int cachedHealthBoosterCount;
+    private int cachedSpeedBoosterCount;
+    private int cachedStrengthBoosterCount;
 
 
     private BoostersHandler playerBoostersHandler;
@@ -47,30 +49,40 @@ public class BoostersUI : MonoBehaviour
         healthPotionText.text = playerBoostersHandler.GetPlayerHealthBoosterCount.ToString();
         speedPotionText.text = playerBoostersHandler.GetPlayerSpeedBoosterCount.ToString();
         strengthPotionText.text = playerBoostersHandler.GetPlayerStrengthBoosterCount.ToString();
+
+        cachedHealthBoosterCount = playerBoostersHandler.GetPlayerHealthBoosterCount;
+        cachedSpeedBoosterCount = playerBoostersHandler.GetPlayerSpeedBoosterCount;
+        cachedStrengthBoosterCount = playerBoostersHandler.GetPlayerStrengthBoosterCount;
     }
 
     private void UpdateHealthBoosterCount(int updatedCount)
     {
         healthPotionText.text = updatedCount.ToString();
 
-        if (updatedCount < playerBoostersHandler.GetPlayerHealthBoosterCount)
+        if (updatedCount < cachedHealthBoosterCount)
             healthPotionUIImage.fillAmount = 0;
+
+        cachedHealthBoosterCount = updatedCount;
     }
 
     private void UpdateStrengthBoosterCount(int updatedCount)
     {
         strengthPotionText.text = updatedCount.ToString();
 
-        if (updatedCount < playerBoostersHandler.GetPlayerStrengthBoosterCount)
+        if (updatedCount < cachedStrengthBoosterCount)
             strengthPotionUIImage.fillAmount = 0;
+
+        cachedStrengthBoosterCount = updatedCount;
     }
 
     private void UpdateSpeedBoosterCount(int updatedCount)
     {
         speedPotionText.text = updatedCount.ToString();
 
-        if (updatedCount < playerBoostersHandler.GetPlayerSpeedBoosterCount)
+        if (updatedCount < cachedSpeedBoosterCount)
             speedPotionUIImage.fillAmount = 0;
+
+        cachedSpeedBoosterCount = updatedCount;
     }
 
 
