@@ -511,6 +511,7 @@ MonoBehaviour:
   strengthBoosterMultiplier: 2
   healthBoosterCount: 3
   healthBoosterHealAmount: 2
+  CoinCount: 0
   OnSpeedBoosterCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -518,6 +519,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnHealthBoosterCountChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCoinCountChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &2334184185191740861
@@ -599,15 +603,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 982860182053692796, guid: 14d7d012453a1e64f82306fc4fe474b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caa81582749c70647827ff624d16fa7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 0.16, y: 0.31}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2334184185191740859
