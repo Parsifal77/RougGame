@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("RoomContent");
+            SceneManager.LoadScene(2);
         }
             
     }

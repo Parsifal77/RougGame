@@ -8,7 +8,7 @@ public class DefaultEnemyHealth : Health
     [SerializeField] private GameObject speedBoosterDrop;
     [SerializeField] private GameObject strengthBoosterDrop;
     [SerializeField] private GameObject coinDrop;
-    [SerializeField] private float dropSpawnChance = 0.1f;
+    [SerializeField] private float dropSpawnChance = 0.9f;
 
     private System.Random random;
 
@@ -23,7 +23,15 @@ public class DefaultEnemyHealth : Health
         double randomValue = random.NextDouble();
         if (randomValue < dropSpawnChance)
         {
-            int randomDrop = random.Next(0, 4); // 0, 1, or 2
+            GameObject dropToSpawn = coinDrop;
+            if (dropToSpawn != null)
+            {
+                Instantiate(dropToSpawn, transform.position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            int randomDrop = random.Next(0, 3); // 0, 1, or 2
             GameObject dropToSpawn = GetDropPrefab(randomDrop);
             if (dropToSpawn != null)
             {
@@ -40,7 +48,6 @@ public class DefaultEnemyHealth : Health
             case 0: return healthBoosterDrop;
             case 1: return speedBoosterDrop;
             case 2: return strengthBoosterDrop;
-            case 3: return coinDrop;
             default: return null;
         }
     }

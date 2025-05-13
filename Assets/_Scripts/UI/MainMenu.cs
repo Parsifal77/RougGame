@@ -19,6 +19,6 @@ public class NewBehaviourScript : MonoBehaviour
         // Wait for the specified delay.
         yield return new WaitForSeconds(delayBeforeLoad);
         // Then load the scene named "RoomContent".
-        SceneManager.LoadScene("RoomContent");
+        SceneManager.LoadScene(1);
     }
 }
