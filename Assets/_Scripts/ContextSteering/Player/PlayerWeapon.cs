@@ -18,6 +18,11 @@ public class PlayerWeapon : Weapon
             {
                 item.GetHit(attackDamage, transform.parent.gameObject);
             }
+
+            if (collider.TryGetComponent<Health>(out var health))
+            {
+                health.GetHit(attackDamage, transform.parent.gameObject);
+            }
         }
     }
 
