@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerWeapon : Weapon
 {
-    // Inherits all behavior from Weapon; can override for player-specific changes
-
     [SerializeField] private int attackDamage = 1;
 
     public int PlayerAttackDamage => attackDamage;
@@ -15,9 +13,10 @@ public class PlayerWeapon : Weapon
         {
             if (collider.isTrigger)
                 continue;
-            if (collider.TryGetComponent<Health>(out var health))
+
+            if (collider.TryGetComponent<Item>(out var item))
             {
-                health.GetHit(attackDamage, transform.parent.gameObject);
+                item.GetHit(attackDamage, transform.parent.gameObject);
             }
         }
     }
@@ -25,14 +24,11 @@ public class PlayerWeapon : Weapon
     internal void ResetDamageMultiplier(int baseAttackDamage)
     {
         attackDamage = baseAttackDamage;
-        //Debug.Log("Damage multiplier reset to base value.");
     }
 
     internal void SetDamageMultiplier(float damageMultiplier, float multiplierDuration, int baseAttackDamage)
     {
         attackDamage = (int)(attackDamage * damageMultiplier);
-        //Debug.Log($"Damage multiplier set to {attackDamage} for {multiplierDuration} seconds.");
-
         StartCoroutine(ResetDamageMultiplierAfterDelay(multiplierDuration, baseAttackDamage));
     }
 

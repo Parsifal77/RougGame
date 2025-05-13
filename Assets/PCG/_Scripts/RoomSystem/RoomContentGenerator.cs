@@ -9,11 +9,13 @@ public class RoomContentGenerator : MonoBehaviour
     [SerializeField]
     private RoomGenerator playerRoom, defaultRoom;
 
+    [SerializeField]
+    private ShopRoom shopRoom;
+
     List<GameObject> spawnedObjects = new List<GameObject>();
 
     [SerializeField]
     private GraphTest graphTest;
-
 
     public Transform itemParent;
 
@@ -23,6 +25,8 @@ public class RoomContentGenerator : MonoBehaviour
     public UnityEvent RegenerateDungeon;
 
     public UnityEvent DungeonContentGenerated;
+
+    private bool shopRoomGenerated = false; // Track if the shop room was generated
 
     private void Update()
     {
@@ -35,6 +39,7 @@ public class RoomContentGenerator : MonoBehaviour
             RegenerateDungeon?.Invoke();
         }
     }
+
     public void GenerateRoomContent(DungeonData dungeonData)
     {
         foreach (GameObject item in spawnedObjects)
@@ -43,7 +48,14 @@ public class RoomContentGenerator : MonoBehaviour
         }
         spawnedObjects.Clear();
 
+        // Reset shop room flag
+        shopRoomGenerated = false;
+
         SelectPlayerSpawnPoint(dungeonData);
+
+        // Add shop room into the generation
+        SelectShopRoom(dungeonData);
+
         SelectEnemySpawnPoints(dungeonData);
 
         foreach (GameObject item in spawnedObjects)
@@ -77,6 +89,28 @@ public class RoomContentGenerator : MonoBehaviour
         dungeonData.roomsDictionary.Remove(playerSpawnPoint);
     }
 
+    private void SelectShopRoom(DungeonData dungeonData)
+    {
+        // Only add a shop room if there are rooms left and it is not already generated
+        if (!shopRoomGenerated && dungeonData.roomsDictionary.Count > 0 && shopRoom != null)
+        {
+            int shopRoomIndex = UnityEngine.Random.Range(0, dungeonData.roomsDictionary.Count);
+            Vector2Int shopRoomPosition = dungeonData.roomsDictionary.Keys.ElementAt(shopRoomIndex);
+
+            List<GameObject> shopObjects = shopRoom.ProcessRoom(
+                shopRoomPosition,
+                dungeonData.roomsDictionary.Values.ElementAt(shopRoomIndex),
+                dungeonData.GetRoomFloorWithoutCorridors(shopRoomPosition)
+            );
+
+            spawnedObjects.AddRange(shopObjects);
+
+            // Remove the room from available rooms
+            dungeonData.roomsDictionary.Remove(shopRoomPosition);
+            shopRoomGenerated = true;
+        }
+    }
+
     private void FocusCameraOnThePlayer(Transform playerTransform)
     {
         cinemachineCamera.LookAt = playerTransform;
@@ -94,8 +128,6 @@ public class RoomContentGenerator : MonoBehaviour
                     dungeonData.GetRoomFloorWithoutCorridors(roomData.Key)
                     )
             );
-
         }
     }
-
 }
