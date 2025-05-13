@@ -512,7 +512,7 @@ MonoBehaviour:
   strengthBoosterMultiplier: 2
   healthBoosterCount: 3
   healthBoosterHealAmount: 2
-  CoinCount: 0
+  CoinCount: 10
   OnSpeedBoosterCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810eb6fee95afee459464f1e3100d309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGold: 100
+  playerCoinCount: 0
   itemsInRange: []
   purchaseKey: 98
 --- !u!1 &2334184185191740861

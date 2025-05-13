@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,12 +24,21 @@ public class BoostersHandler : MonoBehaviour
     //[SerializeField] private float healthBoosterDuration = 5f;
     [SerializeField] private int healthBoosterHealAmount = 2;
 
-    [SerializeField] private int CoinCount = 0;
+    [SerializeField] private int CoinCount = 10;
 
     public int GetPlayerSpeedBoosterCount => speedBoosterCount;
     public int GetPlayerStrengthBoosterCount => strengthBoosterCount;
     public int GetPlayerHealthBoosterCount => healthBoosterCount;
     public int GetPlayerCoinCount => CoinCount;
+
+    public int SetPlayerCoinCount
+    {
+        get => CoinCount;
+        set
+        {
+            CoinCount = value;
+        }
+    }
 
     public float GetPlayerSpeedBoosterDuration => speedBoosterDuration;
     public float GetPlayerStrengthBoosterDuration => strengthBoosterDuration;
@@ -63,6 +73,11 @@ public class BoostersHandler : MonoBehaviour
         //playerRb = GetComponent<Rigidbody2D>();
     }
 
+    private void HandleCoinChange(int updatedCoinCount)
+    {
+        CoinCount = updatedCoinCount;
+        
+    }
 
     private void HandleHealthBooster()
     {

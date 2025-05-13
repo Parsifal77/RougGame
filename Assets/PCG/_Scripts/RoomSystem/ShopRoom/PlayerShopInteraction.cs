@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShopInteraction : MonoBehaviour
 {
     [SerializeField]
-    private int playerGold = 100; // Starting gold amount TO DO: retrieve from player data (BoosterHandler.cs)
+    private int playerCoinCount = 10; // Starting gold amount TO DO: retrieve from player data (BoosterHandler.cs)
 
     [SerializeField]
     private List<ShopItem> itemsInRange = new List<ShopItem>();
@@ -13,6 +14,37 @@ public class PlayerShopInteraction : MonoBehaviour
     private KeyCode purchaseKey = KeyCode.B;
 
     private ShopItem currentSelectedItem = null;
+
+    private BoostersHandler playerBoostersHandler;
+    private GameObject player;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerBoostersHandler = player.GetComponent<BoostersHandler>();
+            if (playerBoostersHandler != null)
+            {
+                playerCoinCount = playerBoostersHandler.GetPlayerCoinCount;
+                Debug.Log("Player has " + playerCoinCount + " gold.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Player GameObject not found.");
+        }
+    }
+
+    private void Start()
+    {
+        playerBoostersHandler.OnCoinCountChanged.AddListener(UpdateCoinCount);
+    }
+
+    private void UpdateCoinCount(int updatedCoinCount)
+    {
+        playerCoinCount = updatedCoinCount;
+    }
 
     private void Update()
     {
@@ -89,23 +121,25 @@ public class PlayerShopInteraction : MonoBehaviour
     {
         int price = item.GetPrice();
 
-        if (playerGold >= price)
+        if (playerCoinCount >= price)
         {
             // Deduct gold
-            playerGold -= price;
+            playerCoinCount -= price;
+            playerBoostersHandler.SetPlayerCoinCount = playerCoinCount;
 
             // Process purchase
             item.Purchase();
 
             // TO DO: Update player inventory here
+            playerBoostersHandler.OnCoinCountChanged?.Invoke(playerCoinCount);
 
             // Remove the shop item from available items
             itemsInRange.Remove(item);
 
-            // Destroy the object after a short delay (to allow for effects/animations)
+            // Destroy the object after a short delay (for effects/animations)
             Destroy(item.gameObject, 0.5f);
 
-            Debug.Log($"Purchased item. Gold remaining: {playerGold}");
+            Debug.Log($"Purchased item. Gold remaining: {playerCoinCount}");
         }
         else
         {

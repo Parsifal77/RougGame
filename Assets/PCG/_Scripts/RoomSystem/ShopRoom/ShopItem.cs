@@ -30,8 +30,8 @@ public class ShopItem : MonoBehaviour
             canBePurchased = false;
             OnPurchased?.Invoke();
 
-            // Note: The actual destruction of the object should happen elsewhere
-            // For example, in a player interaction script after processing the purchase
+            // The actual destruction of the object should happen
+            // in a player interaction script after processing the purchase
         }
     }
 
