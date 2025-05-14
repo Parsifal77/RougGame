@@ -8,7 +8,7 @@ public class HeartsUI : MonoBehaviour
 
     private PlayerHealth playerHealth;
 
-    private void Start()
+    private void Awake()
     {
         RoomContentGenerator roomGenerator = FindObjectOfType<RoomContentGenerator>();
         if (roomGenerator != null)
@@ -31,6 +31,9 @@ public class HeartsUI : MonoBehaviour
         }
 
         GameObject player = GameObject.FindWithTag("Player");
+
+        Debug.Log("Player found: " + player);
+
         if (player != null && player.TryGetComponent(out PlayerHealth health))
         {
             playerHealth = health;

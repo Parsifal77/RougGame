@@ -11,7 +11,7 @@ public class DashStunEffect : MonoBehaviour
         PlayerAgent.OnDashStarted += HandleDash;
     }
 
-    private void HandleDash()
+    public void HandleDash()
     {
         if (enemyAgent != null)
             StartCoroutine(StunEnemy());

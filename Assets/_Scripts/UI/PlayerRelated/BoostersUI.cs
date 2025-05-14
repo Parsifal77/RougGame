@@ -19,7 +19,7 @@ public class BoostersUI : MonoBehaviour
     private int cachedSpeedBoosterCount;
     private int cachedStrengthBoosterCount;
     private int cachedCoinCount;
-    
+
 
 
     private BoostersHandler playerBoostersHandler;

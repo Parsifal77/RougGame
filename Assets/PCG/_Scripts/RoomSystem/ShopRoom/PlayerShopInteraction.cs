@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -153,7 +152,8 @@ public class PlayerShopInteraction : MonoBehaviour
             {
                 playerBoostersHandler.SetPlayerSpeedBoosterCount = (playerBoostersHandler.GetPlayerSpeedBoosterCount + 1);
             }
-        } else
+        }
+        else
         {
             Debug.Log("Not enough gold!");
         }

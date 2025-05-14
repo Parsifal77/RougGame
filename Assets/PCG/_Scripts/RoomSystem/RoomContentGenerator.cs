@@ -3,6 +3,7 @@ using System.Linq;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class RoomContentGenerator : MonoBehaviour
 {
@@ -53,14 +54,25 @@ public class RoomContentGenerator : MonoBehaviour
 
     private void Update()
     {
-            if (Input.GetKeyDown(KeyCode.R) && enemiesCount == 0)
+        if (Input.GetKeyDown(KeyCode.R) && enemiesCount == 0)
+        {
+            //foreach (var item in spawnedObjects)
+            //{
+            //    Destroy(item);
+            //}
+            //RegenerateDungeon?.Invoke();
+
+
+
+            if (SceneManager.GetActiveScene().buildIndex == 1)
             {
-                foreach (var item in spawnedObjects)
-                {
-                    Destroy(item);
-                }
-                RegenerateDungeon?.Invoke();
+                SceneManager.LoadScene(2);
             }
+            else
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
     }
 
     private void LateUpdate()

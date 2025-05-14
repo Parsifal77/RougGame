@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -106,7 +105,7 @@ public class BoostersHandler : MonoBehaviour
     private void HandleCoinChange(int updatedCoinCount)
     {
         CoinCount = updatedCoinCount;
-        
+
     }
 
     private void HandleHealthBooster()

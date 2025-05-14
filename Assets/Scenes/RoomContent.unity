@@ -385,6 +385,7 @@ MonoBehaviour:
   DungeonContentGenerated:
     m_PersistentCalls:
       m_Calls: []
+  enemiesCount: 2147483647
 --- !u!4 &355307592
 Transform:
   m_ObjectHideFlags: 0

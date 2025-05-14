@@ -1,6 +1,4 @@
 using UnityEngine;
-using System;
-using UnityEditor; // Include System for System.Random
 
 public class DefaultEnemyHealth : Health
 {
@@ -15,6 +13,10 @@ public class DefaultEnemyHealth : Health
 
     private System.Random random;
 
+    private Animator animator;
+
+    private DashStunEffect dashStunEffect;
+
     protected void Start()
     {
         // Seed each enemy's random with their unique instance ID
@@ -22,10 +24,15 @@ public class DefaultEnemyHealth : Health
 
         roomContentGenerator = GameObject.Find("RoomContentGenerator").GetComponent<RoomContentGenerator>();
 
-        OnDeathWithReference.AddListener((GameObject sender) => {
+        OnDeathWithReference.AddListener((GameObject sender) =>
+        {
             roomContentGenerator.enemiesCount--;
             Debug.Log("Enemies count: " + roomContentGenerator.enemiesCount);
         });
+
+        animator = transform.Find("Sprite").GetComponent<Animator>();
+
+        dashStunEffect = GetComponent<DashStunEffect>();
     }
 
     protected override void Die()
@@ -48,7 +55,11 @@ public class DefaultEnemyHealth : Health
                 Instantiate(dropToSpawn, transform.position, Quaternion.identity);
             }
         }
-        Destroy(gameObject);
+
+        // Dying animation
+        animator.SetTrigger("Die");
+
+        Destroy(gameObject, 0.6f);
     }
 
     private GameObject GetDropPrefab(int dropIndex)
@@ -80,6 +91,9 @@ public class DefaultEnemyHealth : Health
         {
             OnDeathWithReference?.Invoke(sender);
             isDead = true;
+
+            dashStunEffect.HandleDash(); // Stun enemy
+
             Die(); // Call the abstract Die method
         }
 

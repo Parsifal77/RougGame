@@ -1,7 +1,5 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -48,7 +46,7 @@ public class PlayerInput : MonoBehaviour
         //        SceneManager.LoadScene(1);
         //    }
         //}
-            
+
     }
 
     private Vector2 GetPointerInput()
