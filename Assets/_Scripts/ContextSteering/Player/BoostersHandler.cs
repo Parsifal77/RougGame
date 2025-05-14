@@ -31,15 +31,6 @@ public class BoostersHandler : MonoBehaviour
     public int GetPlayerHealthBoosterCount => healthBoosterCount;
     public int GetPlayerCoinCount => CoinCount;
 
-    public int SetPlayerCoinCount
-    {
-        get => CoinCount;
-        set
-        {
-            CoinCount = value;
-        }
-    }
-
     public float GetPlayerSpeedBoosterDuration => speedBoosterDuration;
     public float GetPlayerStrengthBoosterDuration => strengthBoosterDuration;
 
@@ -54,6 +45,45 @@ public class BoostersHandler : MonoBehaviour
 
 
     //private Rigidbody2D playerRb;
+
+    public int SetPlayerSpeedBoosterCount
+    {
+        get => speedBoosterCount;
+        set
+        {
+            speedBoosterCount = value;
+            OnSpeedBoosterCountChanged?.Invoke(speedBoosterCount);
+        }
+    }
+
+    public int SetPlayerStrengthBoosterCount
+    {
+        get => strengthBoosterCount;
+        set
+        {
+            strengthBoosterCount = value;
+            OnStrengthBoosterCountChanged?.Invoke(strengthBoosterCount);
+        }
+    }
+
+    public int SetPlayerHealthBoosterCount
+    {
+        get => healthBoosterCount;
+        set
+        {
+            healthBoosterCount = value;
+            OnHealthBoosterCountChanged?.Invoke(healthBoosterCount);
+        }
+    }
+
+    public int SetPlayerCoinCount
+    {
+        get => CoinCount;
+        set
+        {
+            CoinCount = value;
+        }
+    }
 
     private void Awake()
     {

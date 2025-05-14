@@ -28,6 +28,20 @@ public class RoomContentGenerator : MonoBehaviour
 
     private bool shopRoomGenerated = false; // Track if the shop room was generated
 
+
+    public int enemiesCount = int.MaxValue;
+
+
+    private void Start()
+    {
+        DungeonContentGenerated.AddListener(() =>
+        {
+            // Get enemies count
+            enemiesCount = spawnedObjects.Count(item => item.CompareTag("Enemy"));
+            Debug.Log($"Enemies count: {enemiesCount}");
+        });
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))

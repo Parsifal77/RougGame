@@ -140,8 +140,20 @@ public class PlayerShopInteraction : MonoBehaviour
             Destroy(item.gameObject, 0.5f);
 
             Debug.Log($"Purchased item. Gold remaining: {playerCoinCount}");
-        }
-        else
+
+            if (item.name == "HealthBoosterShopItem(Clone)")
+            {
+                playerBoostersHandler.SetPlayerHealthBoosterCount = (playerBoostersHandler.GetPlayerHealthBoosterCount + 1);
+            }
+            else if (item.name == "StrengthBoosterShopItem(Clone)")
+            {
+                playerBoostersHandler.SetPlayerStrengthBoosterCount = (playerBoostersHandler.GetPlayerStrengthBoosterCount + 1);
+            }
+            else if (item.name == "SpeedBoosterShopItem(Clone)")
+            {
+                playerBoostersHandler.SetPlayerSpeedBoosterCount = (playerBoostersHandler.GetPlayerSpeedBoosterCount + 1);
+            }
+        } else
         {
             Debug.Log("Not enough gold!");
         }

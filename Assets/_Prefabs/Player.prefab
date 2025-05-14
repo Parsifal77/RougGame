@@ -504,13 +504,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d97e35d729a1b4e80ac98460d8dfe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBoosterCount: 2
+  speedBoosterCount: 1
   speedBoosterDuration: 10
   speedBoosterMultiplier: 1.3
-  strengthBoosterCount: 2
+  strengthBoosterCount: 1
   strengthBoosterDuration: 10
   strengthBoosterMultiplier: 2
-  healthBoosterCount: 3
+  healthBoosterCount: 1
   healthBoosterHealAmount: 2
   CoinCount: 10
   OnSpeedBoosterCountChanged:
