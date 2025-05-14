@@ -17,7 +17,6 @@ public class PriceDisplay : MonoBehaviour
 
     private void CreatePriceText()
     {
-        // If there is no text prefab, create new
         GameObject textObject = new GameObject("PriceText");
         textObject.transform.SetParent(transform);
         textObject.transform.localPosition = new Vector3(0, 0.7f, 0); // Position above the shop item

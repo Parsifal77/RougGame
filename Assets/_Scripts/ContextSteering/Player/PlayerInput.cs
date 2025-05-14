@@ -37,17 +37,17 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
             OnHealthBoosterConsumed?.Invoke();
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (SceneManager.GetActiveScene().buildIndex == 1)
-            {
-                SceneManager.LoadScene(2);
-            }
-            else
-            {
-                SceneManager.LoadScene(1);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    if (SceneManager.GetActiveScene().buildIndex == 1)
+        //    {
+        //        SceneManager.LoadScene(2);
+        //    }
+        //    else
+        //    {
+        //        SceneManager.LoadScene(1);
+        //    }
+        //}
             
     }
 

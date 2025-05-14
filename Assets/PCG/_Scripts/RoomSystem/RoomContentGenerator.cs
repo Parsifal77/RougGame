@@ -31,6 +31,13 @@ public class RoomContentGenerator : MonoBehaviour
 
     public int enemiesCount = int.MaxValue;
 
+    private GameObject player;
+    private TextMesh nextLevelText;
+
+    private GameObject textObject;
+
+
+
 
     private void Start()
     {
@@ -39,18 +46,41 @@ public class RoomContentGenerator : MonoBehaviour
             // Get enemies count
             enemiesCount = spawnedObjects.Count(item => item.CompareTag("Enemy"));
             Debug.Log($"Enemies count: {enemiesCount}");
+
+            player = GameObject.FindGameObjectWithTag("Player");
         });
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            foreach (var item in spawnedObjects)
+            if (Input.GetKeyDown(KeyCode.R) && enemiesCount == 0)
             {
-                Destroy(item);
+                foreach (var item in spawnedObjects)
+                {
+                    Destroy(item);
+                }
+                RegenerateDungeon?.Invoke();
             }
-            RegenerateDungeon?.Invoke();
+    }
+
+    private void LateUpdate()
+    {
+        if (enemiesCount == 0)
+        {
+            if (textObject == null)
+            {
+                textObject = new GameObject("NextLevelText");
+                textObject.transform.SetParent(player.transform);
+                textObject.transform.localPosition = new Vector3(0, 1.5f, 0); // Position above the player
+
+                nextLevelText = textObject.AddComponent<TextMesh>();
+                nextLevelText.alignment = TextAlignment.Center;
+                nextLevelText.anchor = TextAnchor.LowerCenter;
+                nextLevelText.fontSize = 32;
+                nextLevelText.characterSize = 0.1f;
+                nextLevelText.color = Color.yellow;
+                nextLevelText.text = "Press 'R' to go to the next level";
+            }
         }
     }
 
