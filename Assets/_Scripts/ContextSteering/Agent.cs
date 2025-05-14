@@ -1,49 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Agent : MonoBehaviour
+public abstract class Agent : MonoBehaviour
 {
-    private AgentAnimations agentAnimations;
-    private AgentMover agentMover;
+    protected AgentAnimations agentAnimations;
+    protected AgentMover agentMover;
+    protected Weapon weapon;
 
-    private WeaponParent weaponParent;
-
-    private Vector2 pointerInput, movementInput;
+    protected Vector2 pointerInput, movementInput;
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
 
-    private void Update()
+    protected virtual void Awake()
     {
-        //pointerInput = GetPointerInput();
-        //movementInput = movement.action.ReadValue<Vector2>().normalized;
+        agentAnimations = GetComponentInChildren<AgentAnimations>();
+        weapon = GetComponentInChildren<Weapon>();
+        agentMover = GetComponent<AgentMover>();
+    }
 
+    protected virtual void Update()
+    {
         agentMover.MovementInput = MovementInput;
-        weaponParent.PointerPosition = pointerInput;
+        weapon.PointerPosition = PointerInput;
         AnimateCharacter();
     }
 
     public void PerformAttack()
     {
-        weaponParent.Attack();
+        weapon.Attack();
     }
 
-    private void Awake()
+    protected void AnimateCharacter()
     {
-        agentAnimations = GetComponentInChildren<AgentAnimations>();
-        weaponParent = GetComponentInChildren<WeaponParent>();
-        agentMover = GetComponent<AgentMover>();
-    }
-
-    private void AnimateCharacter()
-    {
-        Vector2 lookDirection = pointerInput - (Vector2)transform.position;
+        Vector2 lookDirection = PointerInput - (Vector2)transform.position;
         agentAnimations.RotateToPointer(lookDirection);
         agentAnimations.PlayAnimation(MovementInput);
     }
-
-    
-
 }

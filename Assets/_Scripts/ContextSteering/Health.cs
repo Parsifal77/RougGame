@@ -1,27 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
     [SerializeField]
-    private int currentHealth, maxHealth;
+    protected int currentHealth, maxHealth;
 
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
     [SerializeField]
-    private bool isDead = false;
+    protected bool isDead = false;
 
-    public void InitializeHealth(int healthValue)
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
+
+    public virtual void InitializeHealth(int healthValue)
     {
         currentHealth = healthValue;
         maxHealth = healthValue;
         isDead = false;
     }
 
-    public void GetHit(int amount, GameObject sender)
+    public virtual void GetHit(int amount, GameObject sender)
     {
         if (isDead)
             return;
@@ -38,11 +38,9 @@ public class Health : MonoBehaviour
         {
             OnDeathWithReference?.Invoke(sender);
             isDead = true;
-            Destroy(gameObject);
-            if (sender.tag == "Enemy")
-            {
-                SceneManager.LoadScene("DeathScene");
-            }
+            Die(); // Call the abstract Die method
         }
     }
+
+    protected abstract void Die();
 }

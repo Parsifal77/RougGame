@@ -1,18 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class ItemPlacementHelper
 {
-    Dictionary<PlacementType, HashSet<Vector2Int>> 
+    Dictionary<PlacementType, HashSet<Vector2Int>>
         tileByType = new Dictionary<PlacementType, HashSet<Vector2Int>>();
 
 
     HashSet<Vector2Int> roomFloorNoCorridor;
 
 
-    public ItemPlacementHelper(HashSet<Vector2Int> roomFloor, 
+    public ItemPlacementHelper(HashSet<Vector2Int> roomFloor,
         HashSet<Vector2Int> roomFloorNoCorridor)
     {
         Graph graph = new Graph(roomFloor);
@@ -60,15 +59,15 @@ public class ItemPlacementHelper
                 tileByType[placementType].Remove(position);
             }
 
-            
+
             return position;
         }
         return null;
     }
 
     private (bool, List<Vector2Int>) PlaceBigItem(
-        Vector2Int originPosition, 
-        Vector2Int size ,
+        Vector2Int originPosition,
+        Vector2Int size,
         bool addOffset)
     {
         List<Vector2Int> positions = new List<Vector2Int>() { originPosition };
@@ -83,7 +82,7 @@ public class ItemPlacementHelper
             {
                 if (col == 0 && row == 0)
                     continue;
-                Vector2Int newPosToCheck = 
+                Vector2Int newPosToCheck =
                     new Vector2Int(originPosition.x + row, originPosition.y + col);
                 if (roomFloorNoCorridor.Contains(newPosToCheck) == false)
                     return (false, positions);

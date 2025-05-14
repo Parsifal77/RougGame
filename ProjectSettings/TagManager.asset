@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Booster
+  - StrengthBooster
+  - SpeedBooster
+  - HealthBooster
+  - Coin
+  - ShopItem
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -12,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - PlayerDashing
+  - Player
+  - Enemy
   - 
   - 
   - 

@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Graph
@@ -44,7 +41,7 @@ public class Graph
     }
 
 
-    private List<Vector2Int> GetNeighbours(Vector2Int startPosition, 
+    private List<Vector2Int> GetNeighbours(Vector2Int startPosition,
         List<Vector2Int> neighboursOffsetList)
     {
         List<Vector2Int> neighbours = new List<Vector2Int>();
